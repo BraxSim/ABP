@@ -1,0 +1,10 @@
+.env
+*.env
+credentials.json
+token.json
+service_account.json
+sent_log.json
+pending_approvals.json
+__pycache__/
+*.pyc
+.venv/
