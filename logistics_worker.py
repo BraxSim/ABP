@@ -1,32 +1,9 @@
 from __future__ import annotations
 
+from email_templates import render_prism_logistics_email
 from config import DRY_RUN
 from email_sender import send_email
 from google_sheet import load_orders_from_sheet, update_order_sent_status
-
-
-def build_logistics_email(order: dict) -> tuple[str, str]:
-    name = order.get("name") or "there"
-    order_id = order.get("order_id") or ""
-    logistics_link = order.get("logistics_link") or ""
-
-    subject = "Your logistics tracking information"
-
-    if order_id:
-        subject = f"Your logistics tracking information - {order_id}"
-
-    body = f"""Hi {name},
-
-Your logistics tracking link is now available:
-
-{logistics_link}
-
-Please use this link to check the latest delivery status.
-
-Best,
-Zewen"""
-
-    return subject, body
 
 
 def should_send(order: dict) -> tuple[bool, str]:
@@ -68,7 +45,7 @@ def main() -> None:
         if not allowed:
             continue
 
-        subject, body = build_logistics_email(order)
+        subject, body, html_body = render_prism_logistics_email(order)
 
         print(f"Subject: {subject}")
         print("-" * 70)
@@ -82,6 +59,7 @@ def main() -> None:
                 to_email=email,
                 subject=subject,
                 body=body,
+                html_body=html_body,
             )
             update_order_sent_status(row_number)
             print("Email sent and sheet updated.")
