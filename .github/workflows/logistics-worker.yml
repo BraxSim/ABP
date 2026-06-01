@@ -28,7 +28,7 @@ jobs:
           SMTP_SERVER: smtp.gmail.com
           SMTP_PORT: 465
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
-          GOOGLE_SHEET_RANGE: Sheet1!A:F
+          GOOGLE_SHEET_RANGE: Sheet1!A:V
           GOOGLE_TOKEN_JSON: ${{ secrets.GOOGLE_TOKEN_JSON }}
           GOOGLE_CREDENTIALS_JSON_CONTENT: ${{ secrets.GOOGLE_CREDENTIALS_JSON_CONTENT }}
           DRY_RUN: "false"
