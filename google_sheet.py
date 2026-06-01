@@ -88,9 +88,8 @@ def load_orders_from_sheet() -> list[dict]:
     return orders
 
 
-def update_order_sent_status(row_number: int) -> None:
+def update_photo_sent_status(row_number: int) -> None:
     service = get_sheet_service()
-
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     body = {
@@ -99,7 +98,23 @@ def update_order_sent_status(row_number: int) -> None:
 
     service.spreadsheets().values().update(
         spreadsheetId=GOOGLE_SHEET_ID,
-        range=f"Sheet1!E{row_number}:F{row_number}",
+        range=f"Sheet1!R{row_number}:S{row_number}",
+        valueInputOption="USER_ENTERED",
+        body=body,
+    ).execute()
+
+
+def update_track_sent_status(row_number: int) -> None:
+    service = get_sheet_service()
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    body = {
+        "values": [["SENT", now]]
+    }
+
+    service.spreadsheets().values().update(
+        spreadsheetId=GOOGLE_SHEET_ID,
+        range=f"Sheet1!U{row_number}:V{row_number}",
         valueInputOption="USER_ENTERED",
         body=body,
     ).execute()

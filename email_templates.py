@@ -1,129 +1,238 @@
-def render_prism_logistics_email(order: dict) -> tuple[str, str, str]:
-    name = order.get("name") or "there"
-    order_id = order.get("order_id") or ""
-    logistics_link = order.get("logistics_link") or ""
+PHOTO_HERO_IMAGE_URL = "https://YOUR_PHOTO_HERO_IMAGE_URL.png"
+TRACK_HERO_IMAGE_URL = "https://YOUR_TRACK_HERO_IMAGE_URL.png"
 
-    subject = f"Your Tracking Information - {order_id}"
+LOGO_URL = "https://i.ibb.co/qYP382xc/Mask-group.png"
+
+
+def render_photo_confirmation_email(order: dict) -> tuple[str, str, str]:
+    name = order.get("Cust_First") or "there"
+    photo_link = order.get("Photo_link") or ""
+
+    subject = "Photos Inside - Prepared with Precision"
 
     text_body = f"""Hi {name},
 
-Your order tracking information is now available.
+Thanks for your patience.
 
-Order ID: {order_id}
-Tracking link: {logistics_link}
+Please click the link below for the photo of your order.
 
-Please use this link to check the latest delivery status.
+{photo_link}
 
-Best,
-PRISM Team"""
+It has now been sent for dispatch and on the way to you.
+
+Questions? Just reply to this email.
+We’re always happy to help.
+
+Prism Research
+Proudly Prepared in Australia.
+"""
 
     html_body = f"""
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0; padding:0; background-color:#ffffff; font-family:Arial, Helvetica, sans-serif; color:#2c2c2c;">
-  <tr>
-    <td align="center" style="padding:0; margin:0;">
+<!DOCTYPE html>
+<html>
+<body style="margin:0; padding:0; background-color:#ffffff;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0; padding:0; background-color:#ffffff;">
+    <tr>
+      <td align="center" style="padding:0; margin:0;">
 
-      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; margin:0 auto; background-color:#f4eddd; border-collapse:collapse;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; margin:0 auto; background-color:#f4f8fa; border-collapse:collapse;">
 
-        <tr>
-          <td align="center" style="padding:30px 28px 28px 28px; background-color:#eee6d3;">
+          <tr>
+            <td align="center" style="padding:32px 24px 18px 24px; background-color:#f4f8fa;">
+              <img src="{LOGO_URL}" alt="PRISM" width="120" style="display:block; width:120px; max-width:120px; height:auto; margin:0 auto 24px auto; border:0;">
 
-            <img src="https://i.ibb.co/9k8kMy00/Mask-group-1.png"
-                 alt="PRISM"
-                 width="190"
-                 style="display:block; width:190px; max-width:100%; height:auto; margin:0 auto 24px auto; border:0;">
+              <h1 style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:34px; line-height:40px; font-weight:700; color:#000000; text-align:center;">
+                <span style="color:#1f8f55;">Photos Inside</span><br>
+                Prepared with Precision
+              </h1>
+            </td>
+          </tr>
 
-            <h1 style="margin:0 0 18px 0; font-size:30px; line-height:1.15; font-weight:500; color:#303030;">
-              Your Order Is<br>
-              On The Way
-            </h1>
+          <tr>
+            <td align="center" style="padding:0; margin:0;">
+              <img src="{PHOTO_HERO_IMAGE_URL}" alt="Package photo" width="600" style="display:block; width:100%; max-width:600px; height:auto; border:0; margin:0;">
+            </td>
+          </tr>
 
-            <p style="margin:0 0 22px 0; font-size:15px; line-height:1.5; color:#303030;">
-              Hi {name}, your tracking information is now available.
-            </p>
+          <tr>
+            <td style="padding:40px 48px 36px 48px; font-family:Arial, Helvetica, sans-serif; color:#000000; text-align:left; background-color:#f4f8fa;">
 
-            <p style="margin:0 0 18px 0; font-size:15px; line-height:1.5; color:#303030;">
-              <strong>Order ID:</strong> {order_id}
-            </p>
+              <h2 style="margin:0 0 26px 0; font-size:32px; line-height:38px; font-weight:700; color:#000000;">
+                Package Photos (2/3)
+              </h2>
 
-            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:18px;">
-              <tr>
-                <td align="center" bgcolor="#5a168f" style="border-radius:22px;">
-                  <a href="{logistics_link}"
-                     target="_blank"
-                     style="display:inline-block; padding:12px 30px; font-size:13px; font-weight:bold; color:#ffffff; text-decoration:none; border-radius:22px;">
-                    TRACK YOUR ORDER
-                  </a>
-                </td>
-              </tr>
-            </table>
+              <p style="margin:0 0 22px 0; font-size:16px; line-height:24px;">
+                Hi {name},
+              </p>
 
-            <p style="margin:24px 0 0 0; font-size:13px; line-height:1.5; color:#303030;">
-              If the button does not work, please copy and paste this link:<br>
-              <a href="{logistics_link}" style="color:#5a3c8e;">{logistics_link}</a>
-            </p>
+              <p style="margin:0 0 22px 0; font-size:16px; line-height:24px;">
+                Thanks for your patience.
+              </p>
 
-          </td>
-        </tr>
+              <p style="margin:0 0 22px 0; font-size:16px; line-height:24px;">
+                Please click the button below for the photo of your order.
+              </p>
 
-        <tr>
-          <td style="padding:24px 32px; background-color:#eee6d3;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-              <tr>
-                <td valign="middle" style="font-size:14px; line-height:1.45; color:#303030;">
-                  <h2 style="margin:0 0 6px 0; font-size:22px; line-height:1.2; color:#303030;">
-                    Need Help?
-                  </h2>
-                  If you have any questions about your order or delivery, please contact our support team.
-                </td>
+              <p style="margin:0 0 28px 0; font-size:16px; line-height:24px;">
+                It has now been sent for dispatch and on the way to you.
+              </p>
 
-                <td align="right" valign="middle" width="130" style="padding-left:16px;">
-                  <table cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                      <td bgcolor="#0d222b">
-                        <a href="mailto:support@prismnootripics.com"
-                           style="display:inline-block; padding:13px 22px; font-size:13px; font-weight:bold; color:#ffffff; text-decoration:none;">
-                          Contact Us
-                        </a>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px 0;">
+                <tr>
+                  <td bgcolor="#176b43" style="border-radius:4px;">
+                    <a href="{photo_link}" target="_blank"
+                       style="display:inline-block; padding:16px 34px; font-size:15px; line-height:18px; font-weight:700; font-family:Arial, Helvetica, sans-serif; color:#ffffff; text-decoration:none;">
+                      VIEW PACKAGE PHOTO
+                    </a>
+                  </td>
+                </tr>
+              </table>
 
-        <tr>
-          <td style="padding:30px 32px; background-color:#0d222b; color:#ffffff;">
+              <div style="height:1px; background-color:#cfcfcf; line-height:1px; font-size:1px; margin:0 0 30px 0;">&nbsp;</div>
 
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-              <tr>
-                <td valign="top" width="50%">
-                  <img src="https://i.ibb.co/qYP382xc/Mask-group.png"
-                       alt="PRISM"
-                       width="190"
-                       style="display:block; width:190px; max-width:100%; height:auto; margin:0 0 8px 0; border:0;">
+              <p style="margin:0 0 28px 0; font-size:16px; line-height:22px;">
+                If the button does not work, use this link to view photo:<br>
+                <a href="{photo_link}" target="_blank" style="color:#000000; text-decoration:none; word-break:break-all;">
+                  {photo_link}
+                </a>
+              </p>
 
-                  <div style="font-size:13px; line-height:1.35; color:#ffffff;">
-                    Engineered for Cognitive Performance
-                  </div>
-                </td>
-                <td valign="top" align="right" width="50%" style="font-size:13px; line-height:1.6; color:#ffffff;">
-                  support@prismnootripics.com<br><br>
-                  Trusted, Local, Responsive Team<br>
-                  Based in Australia
-                </td>
-              </tr>
-            </table>
+              <p style="margin:0 0 30px 0; font-size:16px; line-height:22px;">
+                Questions? Just reply to this email.<br>
+                We’re always happy to help.
+              </p>
 
-          </td>
-        </tr>
+              <div style="height:1px; background-color:#cfcfcf; line-height:1px; font-size:1px; margin:0 0 22px 0;">&nbsp;</div>
 
-      </table>
+              <p style="margin:0; text-align:center; font-size:12px; line-height:18px; color:#777777;">
+                Prism Research<br>
+                Proudly Prepared in Australia.
+              </p>
 
-    </td>
-  </tr>
-</table>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+"""
+
+    return subject, text_body, html_body
+
+
+def render_tracking_number_email(order: dict) -> tuple[str, str, str]:
+    name = order.get("Cust_First") or "there"
+    track_link = order.get("Track_link") or ""
+
+    subject = "Order Shipped - Tracking Number Inside"
+
+    text_body = f"""Hi {name},
+
+Your tracking information is now available.
+
+Please click the link below to track your order.
+
+{track_link}
+
+Questions? Just reply to this email.
+We’re always happy to help.
+
+Prism Research
+Proudly Prepared in Australia.
+"""
+
+    html_body = f"""
+<!DOCTYPE html>
+<html>
+<body style="margin:0; padding:0; background-color:#ffffff;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0; padding:0; background-color:#ffffff;">
+    <tr>
+      <td align="center" style="padding:0; margin:0;">
+
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; margin:0 auto; background-color:#f4f8fa; border-collapse:collapse;">
+
+          <tr>
+            <td align="center" style="padding:32px 24px 18px 24px; background-color:#f4f8fa;">
+              <img src="{LOGO_URL}" alt="PRISM" width="120" style="display:block; width:120px; max-width:120px; height:auto; margin:0 auto 24px auto; border:0;">
+
+              <h1 style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:34px; line-height:40px; font-weight:700; color:#000000; text-align:center;">
+                <span style="color:#41699e;">Order Shipped</span><br>
+                Tracking Number Inside
+              </h1>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding:0; margin:0;">
+              <img src="{TRACK_HERO_IMAGE_URL}" alt="Tracking information" width="600" style="display:block; width:100%; max-width:600px; height:auto; border:0; margin:0;">
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:40px 48px 36px 48px; font-family:Arial, Helvetica, sans-serif; color:#000000; text-align:left; background-color:#f4f8fa;">
+
+              <h2 style="margin:0 0 26px 0; font-size:32px; line-height:38px; font-weight:700; color:#000000;">
+                Tracking Number (3/3)
+              </h2>
+
+              <p style="margin:0 0 22px 0; font-size:16px; line-height:24px;">
+                Hi {name},
+              </p>
+
+              <p style="margin:0 0 22px 0; font-size:16px; line-height:24px;">
+                Your tracking information is now available
+              </p>
+
+              <p style="margin:0 0 28px 0; font-size:16px; line-height:24px;">
+                Please click the button below to track your order.
+              </p>
+
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px 0;">
+                <tr>
+                  <td bgcolor="#46699b" style="border-radius:4px;">
+                    <a href="{track_link}" target="_blank"
+                       style="display:inline-block; padding:16px 34px; font-size:15px; line-height:18px; font-weight:700; font-family:Arial, Helvetica, sans-serif; color:#ffffff; text-decoration:none;">
+                      TRACK YOUR ORDER
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <div style="height:1px; background-color:#cfcfcf; line-height:1px; font-size:1px; margin:0 0 30px 0;">&nbsp;</div>
+
+              <p style="margin:0 0 28px 0; font-size:16px; line-height:22px;">
+                If the button does not work, use this link to track order:<br>
+                <a href="{track_link}" target="_blank" style="color:#000000; text-decoration:none; word-break:break-all;">
+                  {track_link}
+                </a>
+              </p>
+
+              <p style="margin:0 0 30px 0; font-size:16px; line-height:22px;">
+                Questions? Just reply to this email.<br>
+                We’re always happy to help.
+              </p>
+
+              <div style="height:1px; background-color:#cfcfcf; line-height:1px; font-size:1px; margin:0 0 22px 0;">&nbsp;</div>
+
+              <p style="margin:0; text-align:center; font-size:12px; line-height:18px; color:#777777;">
+                Prism Research<br>
+                Proudly Prepared in Australia.
+              </p>
+
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
 """
 
     return subject, text_body, html_body
