@@ -1,5 +1,5 @@
-PHOTO_HERO_IMAGE_URL = "https://YOUR_PHOTO_HERO_IMAGE_URL.png"
-TRACK_HERO_IMAGE_URL = "https://YOUR_TRACK_HERO_IMAGE_URL.png"
+PHOTO_HERO_IMAGE_URL = "https://i.ibb.co/LDt3cTCf/IMG-6414.jpg"
+TRACK_HERO_IMAGE_URL = "https://i.ibb.co/5Wn6YNj2/IMG-6413.jpg"
 
 LOGO_URL = "https://i.ibb.co/qYP382xc/Mask-group.png"
 
@@ -130,24 +130,13 @@ Proudly Prepared in Australia.
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; margin:0 auto; background-color:#f4f8fa; border-collapse:collapse;">
 
           <tr>
-            <td align="center" style="padding:32px 24px 18px 24px; background-color:#f4f8fa;">
-              <img src="{LOGO_URL}" alt="PRISM" width="120" style="display:block; width:120px; max-width:120px; height:auto; margin:0 auto 24px auto; border:0; outline:none; text-decoration:none;">
-
-              <h1 style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:34px; line-height:40px; font-weight:700; color:#000000; text-align:center;">
-                <span style="color:#1f8f55;">Photos Inside</span><br>
-                Prepared with Precision
-              </h1>
-            </td>
-          </tr>
-
-          <tr>
             <td align="center" style="padding:0; margin:0;">
               <img src="{PHOTO_HERO_IMAGE_URL}" alt="Package photo" width="600" style="display:block; width:100%; max-width:600px; height:auto; border:0; outline:none; text-decoration:none; margin:0;">
             </td>
           </tr>
 
           <tr>
-            <td style="padding:40px 28px 36px 28px; font-family:Arial, Helvetica, sans-serif; color:#000000; text-align:left; background-color:#f4f8fa;">
+            <td style="padding:34px 28px 36px 28px; font-family:Arial, Helvetica, sans-serif; color:#000000; text-align:left; background-color:#f4f8fa;">
 
               <h2 style="margin:0 0 26px 0; font-family:Arial, Helvetica, sans-serif; font-size:32px; line-height:38px; font-weight:700; color:#000000;">
                 Package Photos (2/3)
@@ -247,24 +236,13 @@ Proudly Prepared in Australia.
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; margin:0 auto; background-color:#f4f8fa; border-collapse:collapse;">
 
           <tr>
-            <td align="center" style="padding:32px 24px 18px 24px; background-color:#f4f8fa;">
-              <img src="{LOGO_URL}" alt="PRISM" width="120" style="display:block; width:120px; max-width:120px; height:auto; margin:0 auto 24px auto; border:0; outline:none; text-decoration:none;">
-
-              <h1 style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:34px; line-height:40px; font-weight:700; color:#000000; text-align:center;">
-                <span style="color:#41699e;">Order Shipped</span><br>
-                Tracking Number Inside
-              </h1>
-            </td>
-          </tr>
-
-          <tr>
             <td align="center" style="padding:0; margin:0;">
               <img src="{TRACK_HERO_IMAGE_URL}" alt="Tracking information" width="600" style="display:block; width:100%; max-width:600px; height:auto; border:0; outline:none; text-decoration:none; margin:0;">
             </td>
           </tr>
 
           <tr>
-            <td style="padding:40px 28px 36px 28px; font-family:Arial, Helvetica, sans-serif; color:#000000; text-align:left; background-color:#f4f8fa;">
+            <td style="padding:34px 28px 36px 28px; font-family:Arial, Helvetica, sans-serif; color:#000000; text-align:left; background-color:#f4f8fa;">
 
               <h2 style="margin:0 0 26px 0; font-size:32px; line-height:38px; font-weight:700; color:#000000;">
                 Tracking Number (3/3)
