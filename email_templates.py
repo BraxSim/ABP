@@ -1,5 +1,5 @@
-PHOTO_HERO_IMAGE_URL = "https://i.ibb.co/LDt3cTCf/IMG-6414.jpg"
-TRACK_HERO_IMAGE_URL = "https://i.ibb.co/5Wn6YNj2/IMG-6413.jpg"
+PHOTO_HERO_IMAGE_URL = "https://raw.githubusercontent.com/BraxSim/ABP/main/assets/photo_hero.jpg"
+TRACK_HERO_IMAGE_URL = "https://raw.githubusercontent.com/BraxSim/ABP/main/assets/track_hero.jpg"
 
 LOGO_URL = "https://i.ibb.co/qYP382xc/Mask-group.png"
 
