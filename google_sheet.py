@@ -4,56 +4,51 @@ import json
 import os
 from datetime import datetime
 
-from google.oauth2.credentials import Credentials
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
+from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 from config import GOOGLE_SHEET_ID, GOOGLE_SHEET_RANGE, GOOGLE_CREDENTIALS_JSON
 
+
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 
-def load_token_info():
-    raw = os.getenv("GOOGLE_TOKEN_JSON", "").strip()
-    if raw:
-        return json.loads(raw)
-
-    if os.path.exists("token.json"):
-        with open("token.json", "r", encoding="utf-8") as f:
-            return json.load(f)
-
-    return None
-
-
-def load_client_config():
-    raw = os.getenv("GOOGLE_CREDENTIALS_JSON_CONTENT", "").strip()
-    if raw:
-        return json.loads(raw)
-
-    with open(GOOGLE_CREDENTIALS_JSON, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
 def get_google_credentials():
-    token_info = load_token_info()
+    """
+    Load Google credentials using Service Account.
 
-    if token_info:
-        creds = Credentials.from_authorized_user_info(token_info, SCOPES)
+    Local:
+        credentials.json
 
-        if creds.expired and creds.refresh_token:
-            creds.refresh(Request())
+    GitHub Actions:
+        GOOGLE_CREDENTIALS_JSON_CONTENT
+    """
 
-        return creds
+    raw = os.getenv("GOOGLE_CREDENTIALS_JSON_CONTENT", "").strip()
 
-    client_config = load_client_config()
-    flow = InstalledAppFlow.from_client_config(client_config, SCOPES)
-    creds = flow.run_local_server(port=0)
+    if raw:
+        info = json.loads(raw)
+        return service_account.Credentials.from_service_account_info(
+            info,
+            scopes=SCOPES,
+        )
 
-    with open("token.json", "w", encoding="utf-8") as token:
-        token.write(creds.to_json())
+    if os.path.exists(GOOGLE_CREDENTIALS_JSON):
+        return service_account.Credentials.from_service_account_file(
+            GOOGLE_CREDENTIALS_JSON,
+            scopes=SCOPES,
+        )
 
-    return creds
+    if os.path.exists("credentials.json"):
+        return service_account.Credentials.from_service_account_file(
+            "credentials.json",
+            scopes=SCOPES,
+        )
+
+    raise FileNotFoundError(
+        "No Google service account credentials found. "
+        "Please provide credentials.json or GOOGLE_CREDENTIALS_JSON_CONTENT."
+    )
 
 
 def get_sheet_service():
